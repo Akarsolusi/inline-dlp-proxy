@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTTPS DLP Inspection Dashboard</title>
+    <link rel="stylesheet" href="styles.css?v=2">
+    <script src="/socket.io/socket.io.js"></script>
+</head>
+<body>
+    <!-- Cache busting: v2 -->
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div class="header-left">
+                    <h1>HTTPS DLP Inspection Dashboard</h1>
+                    <p class="subtitle">Real-time Data Loss Prevention Monitoring</p>
+                </div>
+                <div class="header-right">
+                    <span id="connection-status" class="status-indicator">Connecting...</span>
+                    <span id="last-update" class="last-update">Last update: Never</span>
+                </div>
+            </div>
+        </header>
+
+        <section class="stats-grid">
+            <div class="stat-card total">
+                <div class="stat-icon">📊</div>
+                <div class="stat-content">
+                    <h3>Total Alerts</h3>
+                    <div class="stat-value" id="total-alerts">0</div>
+                </div>
+            </div>
+            <div class="stat-card critical">
+                <div class="stat-icon">🔴</div>
+                <div class="stat-content">
+                    <h3>Critical</h3>
+                    <div class="stat-value" id="critical-alerts">0</div>
+                </div>
+            </div>
+            <div class="stat-card high">
+                <div class="stat-icon">🟠</div>
+                <div class="stat-content">
+                    <h3>High</h3>
+                    <div class="stat-value" id="high-alerts">0</div>
+                </div>
+            </div>
+            <div class="stat-card medium">
+                <div class="stat-icon">🟡</div>
+                <div class="stat-content">
+                    <h3>Medium</h3>
+                    <div class="stat-value" id="medium-alerts">0</div>
+                </div>
+            </div>
+            <div class="stat-card low">
+                <div class="stat-icon">🔵</div>
+                <div class="stat-content">
+                    <h3>Low</h3>
+                    <div class="stat-value" id="low-alerts">0</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="type-section">
+            <h2>Detection Patterns</h2>
+            <div id="type-chart" class="type-chart"></div>
+        </section>
+
+        <section class="destinations-section">
+            <h2>Sensitive Data Destinations</h2>
+            <p class="section-subtitle">Domains and IPs where sensitive data is being sent</p>
+            <div id="destinations-grid" class="destinations-grid"></div>
+        </section>
+
+        <section class="filters-section">
+            <h2>Recent Alerts</h2>
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="critical">Critical</button>
+                <button class="filter-btn" data-filter="high">High</button>
+                <button class="filter-btn" data-filter="medium">Medium</button>
+                <button class="filter-btn" data-filter="low">Low</button>
+            </div>
+        </section>
+
+        <section class="alerts-section">
+            <div id="alerts-container" class="alerts-container">
+                <div class="no-alerts">
+                    <p>No alerts to display</p>
+                    <p class="hint">Alerts will appear here when sensitive data is detected</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Alert Details Modal -->
+    <div id="alert-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Alert Details</h2>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <!-- Dynamic content -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Badge -->
+    <div id="filter-badge" class="filter-badge" style="display: none;">
+        <span id="filter-badge-text"></span>
+        <button id="clear-filter" class="clear-filter-btn">&times;</button>
+    </div>
+
+    <script src="app.js?v=3"></script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+version: '3.8'
+
+services:
+  mitmproxy:
+    image: mitmproxy/mitmproxy:10.1.1
+    container_name: mitmproxy-dlp
+    command: [
+      "mitmweb",
+      "--web-host", "0.0.0.0",
+      "--mode", "regular",
+      "--listen-host", "0.0.0.0",
+      "--listen-port", "3128",
+      "--scripts", "/scripts/dlp_forward.py"
+    ]
+    volumes:
+      - mitmproxy-data:/home/mitmproxy/.mitmproxy
+      - ./logs:/logs:rw
+      - ./scripts:/scripts:ro
+      - ./rules:/rules:ro
+    ports:
+      - "3128:3128"
+      - "8081:8081"
+    networks:
+      - dlp-network
+    restart: unless-stopped
+
+  envoy-proxy:
+    image: envoyproxy/envoy:v1.28-latest
+    container_name: envoy-dlp-proxy
+    volumes:
+      - ./config/envoy.yaml:/etc/envoy/envoy.yaml:ro
+      - ./lua/dlp_filter.lua:/etc/envoy/lua/dlp_filter.lua:ro
+      - ./logs:/var/log/envoy
+      - ./certs/ca.pem:/etc/envoy/certs/ca.pem:ro
+      - ./certs/ca.key:/etc/envoy/certs/ca.key:ro
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+      - "9901:9901"
+    command: ["-c", "/etc/envoy/envoy.yaml", "--log-level", "info"]
+    networks:
+      - dlp-network
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: dlp-frontend
+    volumes:
+      - ./logs:/logs:ro
+      - ./certs/ca.crt:/app/public/ca.crt:ro
+    ports:
+      - "3000:3000"
+    environment:
+      - LOG_PATH=/logs
+    depends_on:
+      - envoy-proxy
+      - mitmproxy
+    networks:
+      - dlp-network
+    restart: unless-stopped
+
+networks:
+  dlp-network:
+    driver: bridge
+
+volumes:
+  mitmproxy-data:

